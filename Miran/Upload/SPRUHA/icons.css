@@ -1,0 +1,39 @@
+/*Icon Sets*/
+/*@import url("../icon-fonts/RemixIcons/fonts/remixicon.css");
+@import url("../icon-fonts/feather/feather.css");
+@import url("../icon-fonts/bootstrap-icons/icons/font/bootstrap-icons.css");
+@import url("../icon-fonts/tabler-icons/iconfont/tabler-icons.css");
+@import url("../icon-fonts/line-awesome/1.3.0/css/line-awesome.css");
+@import url("../icon-fonts/boxicons/css/boxicons.css");
+@import url("../icon-fonts/fontawesome-free/css/all.min.css");
+@import url("../icon-fonts/ionicons/css/ionicons.min.css");
+@import url("../icon-fonts/simple-line-icons/simple-line-icons.css");
+@import url("../icon-fonts/flag-icon-css/css/flag-icon.min.css");
+@import url("../icon-fonts/materialdesignicons/materialdesignicons.css");
+@import url("../icon-fonts/pe7-icons/pe-icon-7-stroke/css/pe-icon-7-stroke.css");
+@import url("../icon-fonts/themify/themify.css");
+@import url("../icon-fonts/typicons.font/typicons.css");
+@import url("../icon-fonts/weather-icons-master/css/weather-icons.css");
+@import url("../icon-fonts/cryptofont/css/cryptofont.min.css");
+*/
+
+/* Icon Sets */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/feathers/5.0.31/index.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/bootstrap-icons.svg");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.26.0/tabler-icons.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/dist/boxicons.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.4.0/esm/ionicons.min.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.3/css/flag-icons.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/4.0.0/iconfont/material-icons.min.css");
+
+@import url("https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css");
+@import url("https://cdn.jsdelivr.net/npm/@icon/themify-icons@1.0.1-alpha.3/themify-icons.min.css");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/typicons/2.1.2/typicons.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css");
+@import url("https://cdn.jsdelivr.net/npm/cryptofont/css/cryptofont.min.css");
+

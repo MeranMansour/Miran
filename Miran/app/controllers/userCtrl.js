@@ -3,7 +3,41 @@
 
     angular
         .module('app')
-        .controller('userCtrl', ['$scope', 'dataService', function ($scope, dataService) {
+        .directive('myInfoMsg', function () {
+            return { templateUrl: "/app/templates/my-info-msg.html" }
+        })
+        .directive('fileModel', ['$parse', function ($parse) {
+            return {
+                restrict: 'A',
+                link: function (scope, element, attrs) {
+                    var model = $parse(attrs.fileModel);
+                    var modelSetter = model.assign;
+
+                    element.bind('change', function () {
+                        var file = element[0].files[0];
+                        scope.$apply(function () {
+                            modelSetter(scope, element[0].files[0]);
+
+                            if (file) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    scope.$apply(function () {
+                                        if (!scope.user) {
+                                            scope.user = { ImagePath: "" };
+                                        }
+                                        scope.user.ImagePath = e.target.result;
+                                        consoel.log(scope.user.ImagePath);
+                                    });
+                                };
+                                reader.readAsDataURL(file);
+                            }
+                        });
+                    });
+                }
+            };
+        }])
+     
+        .controller('userCtrl', ['$scope', 'dataService', '$filter', function ($scope, dataService, $filter) {
             $scope.users = [];
 
             getData();
@@ -15,12 +49,14 @@
             }
 
             $scope.deleteUser = function (id) {
-                dataService.deleteUser(id).then(function () {
-                    toastr.success('User deleted successfuly');
-                    getData();
-                }, function () {
-                    toastr.error('Error in deleting user with Id: ' + id);
-                });
+                if (window.confirm('Are you sure you want to delete this user?')) {
+                    dataService.deleteUser(id).then(function () {
+                        toastr.success('User deleted successfuly');
+                        getData();
+                    }, function () {
+                        toastr.error('Error in deleting user with Id: ' + id);
+                    });
+                }
             };
 
             $scope.triggerFileDialog = function () {
@@ -58,25 +94,35 @@
             };
             
         }])
-        .controller('userAddCtrl', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
+        .controller('userAddCtrl', ['$scope', '$location', 'dataService', '$http', function ($scope, $location, dataService, $http) {
+            $scope.triggerFileInput = function () {
+                document.getElementById('fileInput').click();
+            };
             $scope.createUser = function (user) {
-                dataService.addUser(user).then(function () {
+                dataService.addUser(user, $scope.imageFile).then(function () {
                     toastr.success('User created successfully');
                     $location.path('/users');
                 }, function () {
                     toastr.error('Error in creating user');
                 });
+                
             };
+           
         }])
+
         .controller('userEditCtrl', ['$scope', '$routeParams', '$location', 'dataService', function ($scope, $routeParams, $location, dataService) {
+            $scope.triggerFileInput = function () {
+                document.getElementById('fileInput').click();
+            };
             $scope.user = {};
+            debugger;
             dataService.getUsersById($routeParams.id).then(function (result) {
                 $scope.user = result;
             }, function () {
                 toastr.error('Error in fetching user with Id: ' + $routeParams.id);
             });
             $scope.updateUser = function (user) {
-                dataService.editUser(user).then(function () {
+                dataService.editUser(user, $scope.imageFile).then(function () {
                     toastr.success('User updated successfully');
                     $location.path('/users');
                 }, function () {

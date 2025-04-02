@@ -216,19 +216,29 @@
                     </div>
                     <div class="card-body">
                         <form class="row g-3 mt-0" ng-submit="createUser(user)">
-                            <div class="col-md-3">
+                            <!--<div class="col-md-3">
+                                <label class="form-label">Image Profile</label>
+                                <input type="file" file-model="imageFile">
+                            </div>-->
+                            <div class="col-md-2">
+                                <label class="form-label">Image Profile</label>
+                                <img ng-src="{{user.ImagePath}}"  width="60">
+                                <input id="fileInput" type="file" style="display: none;" file-model="imageFile">
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="triggerFileInput()"><i class="fas fa-upload"></i></button>
+                            </div>
+                            <div class="col-md-2">
                                 <label class="form-label">Name</label>
                                 <input ng-model="user.Name" type="text" class="form-control" placeholder="Name" aria-label="Last name">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="inputEmail4" class="form-label">Email</label>
                                 <input ng-model="user.Email" type="email" class="form-control" id="inputEmail4" placeholder="email@example.com">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="inputPassword4" class="form-label">Password</label>
                                 <input ng-model="user.Password" type="password" class="form-control" id="inputPassword4" placeholder="xxxxxxxx">
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <label for="inputAddress" class="form-label">Mobile Number</label>
                                 <input ng-model="user.MobileNumber" type="text" class="form-control" id="inputAddress" placeholder="Mobile Number">
                             </div>
@@ -237,6 +247,7 @@
                                 <a href="#/users" class="btn btn-default">Cancel</a>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

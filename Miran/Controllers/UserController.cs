@@ -32,18 +32,52 @@ namespace Miran.Controllers
             var user = db.Users.Find(id);
             return Json(user, JsonRequestBehavior.AllowGet);
         }
-
+       
         [HttpPost]
-        public JsonResult Create(User user)
+        public JsonResult Create()
         {
+            HttpPostedFileBase file = Request.Files["file"];
+            string userJson = Request.Form["user"];
+            User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(userJson);
+            if (file != null && file.ContentLength > 0)
+            {
+                string uploadPath = Server.MapPath("~/Upload/images");
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
+                }
+
+                string fileName = Path.GetFileName(file.FileName);
+                string filePath = Path.Combine(uploadPath, fileName);
+                file.SaveAs(filePath);
+
+                user.ImagePath = "/Upload/images/" + fileName;
+            }
             db.Users.Add(user);
             db.SaveChanges();
             return Json(null);
         }
 
         [HttpPost]
-        public JsonResult Edit(User user)
+        public JsonResult Edit()
         {
+            HttpPostedFileBase file = Request.Files["file"];
+            string userJson = Request.Form["user"];
+            User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(userJson);
+            if (file != null && file.ContentLength > 0)
+            {
+                string uploadPath = Server.MapPath("~/Upload/images");
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
+                }
+
+                string fileName = Path.GetFileName(file.FileName);
+                string filePath = Path.Combine(uploadPath, fileName);
+                file.SaveAs(filePath);
+
+                user.ImagePath = "/Upload/images/" + fileName;
+            }
             db.Entry(user).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return Json(null);

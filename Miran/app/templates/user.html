@@ -182,6 +182,11 @@
 
 
     <div class="col-xl-12">
+        <input type="text" ng-model="searchText" placeholder="Search by name" class="form-control" />
+        <!--<div my-info-msg></div>-->
+        <my-info-msg ng-repeat="i in users"></my-info-msg>
+
+        <hr />
         <div class="card custom-card">
             <div class="card-header justify-content-between">
                 <div class="card-title">
@@ -199,15 +204,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="i in users">
+                            <tr ng-repeat="i in users | filter:{Name: searchText}">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="avatar avatar-sm me-2 avatar-rounded">
-                                            <img src="Upload/ProfileImage.png" alt="img">
+                                            <!--<img src="Upload/ProfileImage.png" alt="img">-->
+                                            <img ng-src="{{i.ImagePath}}" alt="img">
                                         </div>
                                         <div>
                                             <div class="lh-1">
-                                                <span>{{i.Name}}</span>
+                                                <span>{{i.Name | uppercase}}</span>
                                             </div>
                                             <div class="lh-1">
                                                 <span class="fs-11 text-muted">{{i.Email}}</span>
@@ -215,7 +221,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{i.MobileNumber}}</td>
+                                <!--<td>{{i.MobileNumber}}</td>-->
+                                <!--<td>{{i.MobileNumber | number:2}}</td>-->
+                                <td>{{i.MobileNumber | currency:"$":2}}</td>
                                 <td>{{i.Password}}</td>
                                 <td>
                                     <a href="#/edituser/{{i.Id}}">

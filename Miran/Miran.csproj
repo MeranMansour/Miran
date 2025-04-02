@@ -171,9 +171,11 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\userCtrl.js" />
+    <Content Include="app\shared\directives\UploadFileDirective.js" />
     <Content Include="app\shared\services\dataService.js" />
     <Content Include="app\templates\dashboard.html" />
     <Content Include="app\templates\login.html" />
+    <Content Include="app\templates\my-info-msg.html" />
     <Content Include="app\templates\user.html" />
     <Content Include="app\templates\userAdd.html" />
     <Content Include="app\templates\userEdit.html" />
@@ -381,6 +383,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\images\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

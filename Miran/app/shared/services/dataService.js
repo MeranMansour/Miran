@@ -29,9 +29,16 @@
             };
 
             //Add
-            service.addUser = function (user) {
+            service.addUser = function (user, file) {
                 var deferred = $q.defer();
-                $http.post('/User/Create', user).then(function () {
+                var formData = new FormData();
+                formData.append("file", file);
+                formData.append("user", JSON.stringify(user));
+
+                $http.post('/User/Create',formData, {
+                    transformRequest: angular.identity,
+                    headers: { 'Content-Type': undefined }
+                }).then(function () {
                     deferred.resolve();
                 }, function () {
                     deferred.reject();
@@ -39,10 +46,17 @@
                 return deferred.promise;
             };
 
+
             //Update
-            service.editUser = function (user) {
+            service.editUser = function (user, file) {
                 var deferred = $q.defer();
-                $http.post('/User/Edit', user).then(function () {
+                var formData = new FormData();
+                formData.append("file", file);
+                formData.append("user", JSON.stringify(user));
+                $http.post('/User/Edit', formData, {
+                    transformRequest: angular.identity,
+                    headers: { 'Content-Type': undefined }
+                }).then(function () {
                     deferred.resolve();
                 }, function () {
                     deferred.reject();
